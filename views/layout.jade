@@ -8,8 +8,10 @@ html
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
   body
-    nav.navbar.fixed-top.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand(href='#' style="font-family: 'Rokkitt', serif;") AgriBazaar
+    nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
+      a.navbar-brand(href='#' style="font-family: 'Rokkitt', serif;") 
+        b Agri
+        | Bazaar
       button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -33,7 +35,8 @@ html
         form.form-inline.my-2.my-lg-0
           input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
           button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
-    block content
+    .container
+      block content
     footer.container-fliud
       div(style="text-align:center")
         i.fa.fa-facebook
@@ -48,7 +51,7 @@ html
           .col-lg-3.col-md-4.col-sm-12.col-xs-12
             ul
               li Some Stupid Things.
-          .col-lg-6.col-md-4.col-sm-12.col-xs-12 Web Technology Project 
+          .div(class="col-lg-6 col-md-4 col-sm-12 col-xs-12", style="text-align:right") Web Technology Project 
             br 
             | by Nirmal Khedkar (181IT230),
             br 
