@@ -28,7 +28,7 @@ footer {
 }
 
 footer li:before {
-    content: '\1F33E';
+    content: '\1F9C5';
     margin-left: -20px;
     margin-right: 10px;
 }

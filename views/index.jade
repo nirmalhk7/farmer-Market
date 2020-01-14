@@ -1,6 +1,20 @@
 extends layout
 block content
-  h1 title
-  p Welcome to #{title}.
-  b THiS is BOLD TEXT
-  div(style="color:#454545") COlored Text
+  #carouselExampleIndicators.carousel.slide(data-ride="carousel")
+    ol.carousel-indicators
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0")
+      li.active(data-target="#carouselExampleIndicators" data-slide-to="0")
+    .carousel-inner
+      .carousel-item.active
+        img.d-block.w-100(src="/images/carousel-1.jpg",alt="Carousel 1")
+      .carousel-item
+        img.d-block.w-100(src="/images/carousel-1.jpg",alt="Carousel 2")
+      .carousel-item
+        img.d-block.w-100(src="/images/carousel-3.jpg",alt="Carousel 3")
+    a.carousel-control-prev(href="#carouselExampleIndicators" role="button" data-slide="prev")
+      span.carousel-control-prev-icon(aria-hidden="true")
+      span.sr-only Previous
+    a.carousel-control-next(href="#carouselExampleIndicators" role="button" data-slide="next")
+      span.carousel-control-next-icon(aria-hidden="true")
+      span.sr-only Next
