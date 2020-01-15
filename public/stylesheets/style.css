@@ -12,8 +12,6 @@ i.fa {
 footer {
     color: white;
     background-color: rgb(0, 93, 168);
-    position: absolute;
-    bottom: 0;
     padding: 2em;
     width: 100%;
 }
@@ -31,4 +29,9 @@ footer li:before {
     content: '\1F9C5';
     margin-left: -20px;
     margin-right: 10px;
+}
+
+.section-heading {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 2em;
 }

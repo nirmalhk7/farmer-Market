@@ -4,7 +4,7 @@ html
     title= title
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
      integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt&display=swap")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand|Rokkitt&display=swap")
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
   body
@@ -21,21 +21,22 @@ html
               | Home 
               span.sr-only (current)
           li.nav-item
-            a.nav-link(href='#') Link
+            a.nav-link(href='#') My Orders
           li.nav-item.dropdown
             a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-              | Dropdown
+              | Categories
             .dropdown-menu(aria-labelledby='navbarDropdown')
               a.dropdown-item(href='#') Action
               a.dropdown-item(href='#') Another action
               .dropdown-divider
               a.dropdown-item(href='#') Something else here
-          li.nav-item
-            a.nav-link.disabled(href='#', tabindex='-1', aria-disabled='true') Disabled
-        form.form-inline.my-2.my-lg-0
-          input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
-    div(style="margin-top:3.5em")
+        .input-group(style="max-width:1100px")
+          input.form-control(type="text",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
+          .input-group-append
+            button.btn.btn-secondary(type="button",id="button-addon2")
+              span.glyphicon.glyphicon-search
+              
+    div(style="margin-top:3.5em;margin-bottom:3em;")
       block content
     footer.container-fliud
       div(style="text-align:center")
