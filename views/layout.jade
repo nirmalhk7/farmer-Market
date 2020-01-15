@@ -8,57 +8,10 @@ html
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
   body
-    nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
-      a.navbar-brand(href='#' style="font-family: 'Rokkitt', serif;") 
-        b Agri
-        | Bazaar
-      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        ul.navbar-nav.mr-auto
-          li.nav-item.active
-            a.nav-link(href='#')
-              | Home 
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='#') My Orders
-          li.nav-item.dropdown
-            a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-              | Categories
-            .dropdown-menu(aria-labelledby='navbarDropdown')
-              a.dropdown-item(href='#') Action
-              a.dropdown-item(href='#') Another action
-              .dropdown-divider
-              a.dropdown-item(href='#') Something else here
-        .input-group(style="max-width:1100px")
-          input.form-control(type="text",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
-          .input-group-append
-            button.btn.btn-secondary(type="button",id="button-addon2")
-              span.glyphicon.glyphicon-search
-              
+    include ./includes/header.jade     
     div(style="margin-top:3.5em;margin-bottom:3em;")
       block content
-    footer.container-fliud
-      div(style="text-align:center")
-        i.fa.fa-facebook
-        i.fa.fa-twitter
-        i.fa.fa-instagram
-        i.fa.fa-envelope
-      .container-fluid
-        .row
-          .col-lg-3.col-md-4.col-sm-12.col-xs-12
-            ul
-              li Some Stupid Things.
-          .col-lg-3.col-md-4.col-sm-12.col-xs-12
-            ul
-              li Some Stupid Things.
-          .div(class="col-lg-6 col-md-4 col-sm-12 col-xs-12", style="text-align:right") Web Technology Project 
-            br 
-            | by Nirmal Khedkar (181IT230),
-            br 
-            | Mukesh Kumar (181IT228) and
-            br 
-            | Yash Parakh (181IT253)
+    include ./includes/footer.jade
   
 script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
 script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')

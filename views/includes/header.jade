@@ -1,0 +1,35 @@
+nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#' style="font-family: 'Rokkitt', serif;") 
+    b Agri
+    | Bazaar
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      //- li.nav-item.active
+      //-   a.nav-link(href='#')
+      //-     | Home 
+      //-     span.sr-only (current)
+      li.nav-item
+        a.nav-link(href='#') Cart
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | My Account
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='#') Action
+          a.dropdown-item(href='#') Another action
+          .dropdown-divider
+          a.dropdown-item(href='#') Something else here
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+            | All Categories
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='#') Action
+          a.dropdown-item(href='#') Another action
+          .dropdown-divider
+          a.dropdown-item(href='#') Something else here
+    .input-group(style="max-width:1100px")
+      input.form-control(type="text",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
+      .input-group-append
+      button.btn.btn-secondary(type="button",id="button-addon2")
+          span.glyphicon.glyphicon-search
