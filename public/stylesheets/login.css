@@ -144,7 +144,7 @@ input::placeholder {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background: url("https://goo.gl/YRxqs1") no-repeat center;
+  background: url("/images/login.jpg") no-repeat center;
   background-size: cover;
 }
 .user_options-container {
@@ -325,7 +325,7 @@ input::placeholder {
 }
 .user_options-forms.bounceRight {
   -webkit-animation: bounceRight 1s forwards;
-          animation: bounceRight 1s forwards;
+  animation: bounceRight 1s forwards;
 }
 
 /**
