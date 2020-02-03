@@ -1,6 +1,7 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+html
+  head
+    title= error.status
+  body(style="color:white;background-color:black;text-align:center")
+    h1= message
+    h2= error.status
+    pre #{error.stack}
