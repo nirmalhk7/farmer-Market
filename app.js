@@ -2,18 +2,15 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-var mysql = require('mysql');
 var bodyParser = require('body-parser');
-var express = require('express');
 var router = express.Router();
 var app= express();
 var session = require('express-session');
-
+var config=require('./config')
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -24,8 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+app.use('/welcome', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,19 +39,6 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'root',
-	database : 'agribazaar'
-});
-connection.connect(function (err){
-	if(!err){
-		console.log("Database is CONNECTED :) ")
-	}else {
-		console.log("Database is DISCONNECTED :( ")
-	}
-});
 
 app.use(session({
 	secret: 'secret',
