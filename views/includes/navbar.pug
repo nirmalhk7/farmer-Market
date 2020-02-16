@@ -5,7 +5,12 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto
+    .input-group(style="max-width:1100px")
+      input.form-control(type="text",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
+      .input-group-append
+        button.btn.btn-secondary(type="button",id="button-addon2")
+          i.fa.fa-search
+    ul.navbar-nav.ml-auto
       //- li.nav-item.active
       //-   a.nav-link(href='#')
       //-     | Home 
@@ -13,23 +18,10 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
       li.nav-item
         a.nav-link(href='/cart') Cart
       li.nav-item.dropdown
-        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-          | Login/Signup
-        .dropdown-menu(aria-labelledby='navbarDropdown')
-          a.dropdown-item(href='#') Action
+        a#navbarDropdown.nav-link.dropdown-toggle(href='users', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+          | Login
+        .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='/users') Login/Signup
           a.dropdown-item(href='#') Another action
           .dropdown-divider
           a.dropdown-item(href='#') Something else here
-      li.nav-item.dropdown
-        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-            | All Categories
-        .dropdown-menu(aria-labelledby='navbarDropdown')
-          a.dropdown-item(href='#') Action
-          a.dropdown-item(href='#') Another action
-          .dropdown-divider
-          a.dropdown-item(href='#') Something else here
-    .input-group(style="max-width:1100px")
-      input.form-control(type="text",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
-      .input-group-append
-      button.btn.btn-secondary(type="button",id="button-addon2")
-          span.glyphicon.glyphicon-search
