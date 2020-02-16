@@ -6,9 +6,12 @@ var logger = require('morgan');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
-var dbSetup=require('./config')
+var dbSetup=require('./config');
+global.db = dbSetup;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var auth=require('./routes/auth');
+
 
 var app = express();
 
@@ -24,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.post('/login', auth.login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,11 +46,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'nodelogin'
-});
-

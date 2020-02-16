@@ -4,14 +4,15 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
-	password : 'nirmalkhedkar',
+	password : 'password',
 	database : 'agribazaar'
 });
 connection.connect(function (err){
 	if(!err){
-		console.log("Database is CONNECTED :) ")
+		console.log("MySQL: Database is CONNECTED :) ")
 	}else {
-		console.log("Database is DISCONNECTED :( ")
+		console.log("MySQL: Database is DISCONNECTED :( ")
 	}
 });
+
 module.exports=connection;

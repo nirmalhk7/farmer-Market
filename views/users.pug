@@ -4,8 +4,11 @@ head
   title Welcome to AgriBazaar
   link(href='https://fonts.googleapis.com/css?family=Montserrat:300, 400, 500' rel='stylesheet')
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css')
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css',
+     integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
   link(rel='stylesheet' href='/stylesheets/login.css')
 section.user
+  - var log= {msg:"You have an error you idiot!", type:"debug"}
   .user_options-container
     .user_options-text
       .user_options-unregistered
@@ -21,12 +24,16 @@ section.user
     #user_options-forms.user_options-forms
       .user_forms-login
         h2.forms_title Login
-        form.forms_form
+        form.forms_form(role="form" method="post" action="/login")
           fieldset.forms_fieldset
             .forms_field
-              input.forms_field-input(type='email' placeholder='Email' required='' autofocus='')
+              input.forms_field-input(type='email'  name="user_email" placeholder='Email' required='' autofocus='')
             .forms_field
-              input.forms_field-input(type='password' placeholder='Password' required='')
+              input.forms_field-input(type='password' name="user_password" placeholder='Password' required='')
+          if log.type=="error"
+          .alert.alert-danger.alert-dismissible.fade.show(role="alert" style="margin-top:2em") #{log.msg}
+            button.close(type="button",data-dismiss="alert",aria-label="Close")
+              span(aria-hidden="true") &times;
           .forms_buttons
             button.forms_buttons-forgot(type='button') Forgot password?
             input.forms_buttons-action(type='submit' value='Log In')
@@ -43,3 +50,6 @@ section.user
           .forms_buttons
             input.forms_buttons-action(type='submit' value='Sign up')
 script(src='/javascripts/login.js')
+script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
