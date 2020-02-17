@@ -12,9 +12,19 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cartRouter = require('./routes/cart')
 var auth=require('./routes/auth');
-
+//Session management package
+var session = require('express-session');
 
 var app = express();
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +47,8 @@ app.post('/login', auth.login);
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
