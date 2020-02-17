@@ -4,3 +4,16 @@ block content
   h1= message
   h2= error.status
   pre #{error.stack}
+doctype html
+head
+  meta(charset='UTF-8')
+  title= error.status
+  link(rel='stylesheet' href='./style.css')
+// partial:index.partial.html
+.overlay.overlay--scanline
+.overlay.overlay--vignette
+.flex-full-justify
+  .flex-inner
+    .text-center
+      h1= error.status
+    p #{error.stack}
