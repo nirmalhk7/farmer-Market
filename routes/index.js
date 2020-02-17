@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     var username=req.session.username;
     var userId=req.session.userId;
-    console.log("Now showing Dashboard with "+username+" signed in!")
+    console.log("express-session: "+username+" is found from the Cache")
     res.render('index',{accname: username});
 });
 module.exports = router;

@@ -1,3 +1,52 @@
 extends layout
 block content
-  | My Cart!!!
+  .shopping-cart
+  .column-labels
+    label.product-image Image
+    label.product-details Product
+    label.product-price Price
+    label.product-quantity Quantity
+    label.product-removal Remove
+    label.product-line-price Total
+  .product
+    .product-image
+      img(src='https://s.cdpn.io/3/dingo-dog-bones.jpg')
+    .product-details
+      .product-title Dingo Dog Bones
+      p.product-description
+        | The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I&apos;m a fan.
+    .product-price 12.99
+    .product-quantity
+      input(type='number' value='2' min='1')
+    .product-removal
+      button.remove-product
+        | Remove
+    .product-line-price 25.98
+  .product
+    .product-image
+      img(src='https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png')
+    .product-details
+      .product-title Nutro&trade; Adult Lamb and Rice Dog Food
+      p.product-description
+        | Who doesn&apos;t like lamb and rice? We&apos;ve all hit the halal cart at 3am while quasi-blackout after a night of binge drinking in Manhattan. Now it&apos;s your dog&apos;s turn!
+    .product-price 45.99
+    .product-quantity
+      input(type='number' value='1' min='1')
+    .product-removal
+      button.remove-product
+        | Remove
+    .product-line-price 45.99
+  .totals
+    .totals-item
+      label Subtotal
+      #cart-subtotal.totals-value 71.97
+    .totals-item
+      label Tax (5%)
+      #cart-tax.totals-value 3.60
+    .totals-item
+      label Shipping
+      #cart-shipping.totals-value 15.00
+    .totals-item.totals-item-total
+      label Grand Total
+      #cart-total.totals-value 90.57
+  button.checkout Checkout

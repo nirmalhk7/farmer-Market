@@ -10,7 +10,7 @@ var dbSetup=require('./config');
 global.db = dbSetup;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var cartRouter = require('./routes/cart')
+var dashboardRouter = require('./routes/dashboard')
 var auth=require('./routes/auth');
 //Session management package
 var session = require('express-session');
@@ -21,7 +21,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }))
 
 
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/cart',cartRouter);
+app.use('/cart',dashboardRouter.mycart);
 
 app.post('/login', auth.login);
 
