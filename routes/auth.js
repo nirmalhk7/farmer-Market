@@ -38,3 +38,26 @@ exports.login = function(req, res){
     res.send("Auth: Incorrect database query!");
     }         
 };
+exports.signup = function(req, res){
+    message = '';
+    if(req.method == "POST"){
+        var post  = req.body;
+        var name= post.Rusername;
+        var pass= post.Rpassword;
+        var fname= post.Rfullname;
+        var address= post.Raddress;
+        var email=post.Remail;
+        var role=post.Rrole;
+        console.log("Role "+role);
+        var sql = "INSERT INTO `Users`(`username`,`password`,`fullname`, `email`,`role`,`address`) VALUES ('" + name + "','" + pass + "','" + fname + "','" + email + "','" + role + "','" + address + "')";
+
+        var query = db.query(sql, function(err, result) {
+
+            message = "Succesfull! Your account has been created.";
+            res.render('index',{title:"India's Biggest Farmer-to-Consumer Marketplace",accname: name,message: message,level: "info"});
+        });
+
+    } else {
+        res.render('signup');
+    }
+};

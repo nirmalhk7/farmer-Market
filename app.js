@@ -41,6 +41,7 @@ app.use('/', indexRouter);
 app.use('/users', auth.users);
 app.use('/cart',dashboardRouter.mycart);
 app.post('/login', auth.login);
+app.post('/signup',auth.signup);
 app.post('/search',searchRouter);
 app.post('/logout',dashboardRouter.logout);
 app.use('/dashboard',dashboardRouter.sellerProfile)

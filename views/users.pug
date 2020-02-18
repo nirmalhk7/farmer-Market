@@ -38,20 +38,24 @@ section.user
             input.forms_buttons-action(type='submit' value='Log In')
       .user_forms-signup
         h2.forms_title Sign Up
-        form.forms_form
+        form.forms_form(role="form" method="post" action="/signup")
           fieldset.forms_fieldset
             .forms_field
-              input.forms_field-input(type='text' placeholder='Full Name' required='')
+              input.forms_field-input(name="Rusername" type='text' placeholder='Username' required='')
             .forms_field
-              input.forms_field-input(type='email' placeholder='Email' required='')
+              input.forms_field-input(name="Rfullname" type='text' placeholder='Full Name' required='')
             .forms_field
-              input.forms_field-input(type='password' placeholder='Password' required='')
+              input.forms_field-input(name="Remail" type='email' placeholder='Email' required='')
             .forms_field
-              input(type="radio" id="buyer" name="role" valie="buyer")
+              input.forms_field-input(name="Rpassword" type='password' placeholder='Password' required='')
+            .forms_field
+              textarea.forms_field-input(style="resize:vertical" name="Raddress" type="text" placeholder="Address" required='')
+            .forms_field
+              input(type="radio" id="buyer" name="Rrole" value="shopper")
               label Buyer
-              input(type="radio" id="farmer" name="role" valie="farmer")
+              input(type="radio" id="farmer" name="Rrole" value="farmer")
               label Farmer
-          .forms_buttons
+          .forms_buttons(style="margin-bottom:2em")
             input.forms_buttons-action(type='submit' value='Sign up')
 script(src='/javascripts/login.js')
 script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
