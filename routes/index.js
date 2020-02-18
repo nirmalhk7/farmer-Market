@@ -6,6 +6,6 @@ router.get('/', function(req, res, next) {
     var username=req.session.username;
     var userId=req.session.userId;
     console.log("express-session: "+username+" is found from the Cache")
-    res.render('index',{accname: username});
+    res.render('index',{title:"India's Biggest Farmer-to-Consumer Marketplace",accname: username});
 });
 module.exports = router;

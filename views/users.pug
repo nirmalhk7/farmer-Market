@@ -8,7 +8,6 @@ head
      integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
   link(rel='stylesheet' href='/stylesheets/login.css')
 section.user
-  - var log= {msg:"You have an error you idiot!", type:"debug"}
   .user_options-container
     .user_options-text
       .user_options-unregistered
@@ -30,10 +29,10 @@ section.user
               input.forms_field-input(type='email'  name="user_email" placeholder='Email' required='' autofocus='')
             .forms_field
               input.forms_field-input(type='password' name="user_password" placeholder='Password' required='')
-          if log.type=="error"
-          .alert.alert-danger.alert-dismissible.fade.show(role="alert" style="margin-top:2em") #{log.msg}
-            button.close(type="button",data-dismiss="alert",aria-label="Close")
-              span(aria-hidden="true") &times;
+          if level=="danger"
+            .alert.alert-danger(role="alert") #{message}
+          else if level=="warning"
+            .alert.alert-warning(role="alert") #{message}
           .forms_buttons
             button.forms_buttons-forgot(type='button') Forgot password?
             input.forms_buttons-action(type='submit' value='Log In')

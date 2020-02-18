@@ -38,12 +38,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', auth.users);
 app.use('/cart',dashboardRouter.mycart);
 app.post('/login', auth.login);
 app.post('/search',searchRouter);
 app.post('/logout',dashboardRouter.logout);
-
+app.use('/dashboard',dashboardRouter.sellerProfile)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
