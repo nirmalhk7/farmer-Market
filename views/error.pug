@@ -1,14 +1,8 @@
-extends layout
-
-block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
 doctype html
 head
   meta(charset='UTF-8')
   title= error.status
-  link(rel='stylesheet' href='./style.css')
+  link(rel='stylesheet' href='/stylesheets/error.css')
 // partial:index.partial.html
 .overlay.overlay--scanline
 .overlay.overlay--vignette
@@ -16,4 +10,5 @@ head
   .flex-inner
     .text-center
       h1= error.status
+    h3.text-center= message
     p #{error.stack}

@@ -6,7 +6,7 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     form(role="form" method="post" action="/search",style="width:100%")
-      .input-group(style="max-width:1100px")
+      .input-group
         input.form-control(type="text",name="search",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
         .input-group-append
           button.btn.btn-secondary(type="button",id="button-addon2")
@@ -26,7 +26,7 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
             a.dropdown-item(href='#') Previous Orders
             a.dropdown-item(href='#') Return/Exchange
             .dropdown-divider
-            a.dropdown-item(href='#') Log Out
+            a.dropdown-item(href='/logout') Log Out
         else
           a#navbarDropdown.nav-link.dropdown-toggle(href='users', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Login/Signup
           .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')

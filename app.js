@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard')
 var auth=require('./routes/auth');
+var searchRouter=require('./routes/search')
 //Session management package
 var session = require('express-session');
 
@@ -39,9 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart',dashboardRouter.mycart);
-
 app.post('/login', auth.login);
-
+app.post('/search',searchRouter);
+app.post('/logout',dashboardRouter.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -35,3 +35,6 @@ footer li:before {
     font-family: 'Quicksand', sans-serif;
     margin-top: 2em;
 }
+a, a:active, a:focus{
+    outline: none; /* Works in Firefox, Chrome, IE8 and above */ 
+}

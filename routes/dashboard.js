@@ -11,3 +11,8 @@
     //     res.render('profile.ejs', {user:user});	  
     // });	 
 };
+exports.logout = function(req,res,next){
+    req.session.destroy(function(err) {
+    })
+    res.redirect('/');
+}
