@@ -16,7 +16,7 @@ button {
   cursor: pointer;
 }
 
-input {
+input,textarea {
   background-color: transparent;
   padding: 0;
   border: 0;
@@ -32,21 +32,8 @@ input::-webkit-input-placeholder {
   letter-spacing: 0.1rem;
   color: #ccc;
 }
-input:-ms-input-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
-  color: #ccc;
-}
-input::-ms-input-placeholder {
-  font-size: 0.85rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
-  color: #ccc;
-}
-input::placeholder {
+
+textarea::placeholder,input::placeholder {
   font-size: 0.85rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -369,4 +356,7 @@ border-color:#ebccd1;
   color:#8a6d3b;
 background-color:#fcf8e3;
 border-color:#faebcc;
+}
+button, button:active, button:focus{
+  outline: none; /* Works in Firefox, Chrome, IE8 and above */ 
 }

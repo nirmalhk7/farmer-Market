@@ -6,14 +6,14 @@
     }
     // res.send(req.session.username+", you can now see CART!");
     var username=req.session.username;
-    res.render('cart',{title:"Your Cart",accname:username});
+    res.render('buyer/cart',{title:"Your Cart",accname:username,role:req.session.role});
 	// var sql="SELECT * FROM `login_details` WHERE `id`='"+userId+"'";
     // db.query(sql, function(err, results){
     //     res.render('profile.ejs', {user:user});	  
     // });	 
 };
 exports.sellerProfile= function(req,res,next){
-    res.send("YOU ARE A SELLER");
+    res.render('seller');
 }
 exports.search = function(req,res,next){
     var username=req.session.username;

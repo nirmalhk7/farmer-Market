@@ -21,7 +21,7 @@ section.user
           | Sign up to India's biggest Direct Farmer to Consumer Marketplace. We promise to not misuse your personal information!
         button#login-button.user_registered-login I have an account
     #user_options-forms.user_options-forms
-      .user_forms-login
+      #login.user_forms-login
         h2.forms_title Login
         form.forms_form(role="form" method="post" action="/login")
           fieldset.forms_fieldset
@@ -36,7 +36,7 @@ section.user
           .forms_buttons
             button.forms_buttons-forgot(type='button') Forgot password?
             input.forms_buttons-action(type='submit' value='Log In')
-      .user_forms-signup
+      #signup.user_forms-signup
         h2.forms_title Sign Up
         form.forms_form(role="form" method="post" action="/signup")
           fieldset.forms_fieldset
@@ -51,7 +51,7 @@ section.user
             .forms_field
               textarea.forms_field-input(style="resize:vertical" name="Raddress" type="text" placeholder="Address" required='')
             .forms_field
-              input(type="radio" id="buyer" name="Rrole" value="shopper")
+              input(type="radio" id="buyer" name="Rrole" checked="checked" value="shopper")
               label Buyer
               input(type="radio" id="farmer" name="Rrole" value="farmer")
               label Farmer
