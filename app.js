@@ -8,11 +8,7 @@ var bodyParser = require('body-parser');
 
 var dbSetup=require('./config');
 global.db = dbSetup;
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var dashboardRouter = require('./routes/dashboard')
-var auth=require('./routes/auth');
-var searchRouter=require('./routes/search')
+
 //Session management package
 var session = require('express-session');
 
@@ -24,6 +20,13 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }))
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var dashboardRouter = require('./routes/dashboard')
+var auth=require('./routes/auth');
+var searchRouter=require('./routes/search')
+
 
 
 
@@ -42,9 +45,9 @@ app.use('/users', auth.users);
 app.use('/cart',dashboardRouter.mycart);
 app.post('/login', auth.login);
 app.post('/signup',auth.signup);
-app.post('/search',searchRouter);
-app.post('/logout',dashboardRouter.logout);
-app.use('/dashboard',dashboardRouter.sellerProfile)
+app.use('/search',dashboardRouter.search);
+app.post('/logout',auth.logout);
+app.use('/dashboard',dashboardRouter.sellerProfile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

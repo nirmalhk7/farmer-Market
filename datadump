@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm agribazaar.sql
+mysqldump -u root -p agribazaar > agribazaar.sql

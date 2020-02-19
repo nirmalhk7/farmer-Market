@@ -5,17 +5,23 @@
 		return;
     }
     // res.send(req.session.username+", you can now see CART!");
-    res.render('cart',{title:"Your Cart"});
+    var username=req.session.username;
+    res.render('cart',{title:"Your Cart",accname:username});
 	// var sql="SELECT * FROM `login_details` WHERE `id`='"+userId+"'";
     // db.query(sql, function(err, results){
     //     res.render('profile.ejs', {user:user});	  
     // });	 
 };
-exports.logout = function(req,res,next){
-    req.session.destroy(function(err) {
-    })
-    res.redirect('/');
-}
 exports.sellerProfile= function(req,res,next){
     res.send("YOU ARE A SELLER");
+}
+exports.search = function(req,res,next){
+    var username=req.session.username;
+    var userId=req.session.userId;
+    var role=req.session.role;
+    if (role=="shopper"){
+        console.log("express-session: "+username+" is found from the Cache")
+        res.render('search',{accname: username});
+    }
+    
 }

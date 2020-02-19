@@ -11,7 +11,7 @@ connection.connect(function (err){
 	if(!err){
 		console.log("MySQL: Database is CONNECTED :) ")
 	}else {
-		console.log("MySQL: Database is DISCONNECTED :( ")
+		throw new Error("MySQL: Database is DISCONNECTED :( ");
 	}
 });
 

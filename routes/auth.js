@@ -1,6 +1,17 @@
 exports.users = function(req,res,next){
     res.render('users', { title: 'AgriBazaar' });
 }
+exports.logout = function(req,res,next){
+    req.session.destroy(function(err) {
+        if(err){
+            console.log(err);
+        }else{
+            console.log("Auth: "+req.session.username+" is trying to logout.")
+            req.logout();
+            res.redirect('/');
+        }
+    });
+}
 exports.login = function(req, res){
     var message = '';
     var sess = req.session; 
@@ -31,7 +42,11 @@ exports.login = function(req, res){
         else{
             console.log("Auth: Incorrect Credentials "+email+"- "+pass)
             message = 'Sorry, but your email or password is incorrect.';
-            res.render('users',{message: message,level:"danger"});
+            req.session.message=message;
+            req.session.level="danger";
+            console.log("Sending "+req.session.message);
+            res.redirect('/users');
+            // res.render('users',{message: message,level:"danger"});
         }
     });
     } else {
