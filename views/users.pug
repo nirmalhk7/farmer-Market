@@ -26,7 +26,7 @@ section.user
         form.forms_form(role="form" method="post" action="/login")
           fieldset.forms_fieldset
             .forms_field
-              input.forms_field-input(type='email'  name="user_email" placeholder='Email' required='' autofocus='')
+              input.forms_field-input(type='name'  name="user_email" placeholder='Email or Username' required='' autofocus='')
             .forms_field
               input.forms_field-input(type='password' name="user_password" placeholder='Password' required='')
           if level=="danger"

@@ -2,15 +2,12 @@ exports.users = function(req,res,next){
     res.render('users', { title: 'AgriBazaar' });
 }
 exports.logout = function(req,res,next){
-    req.session.destroy(function(err) {
-        if(err){
-            console.log(err);
-        }else{
-            console.log("Auth: "+req.session.username+" is trying to logout.")
-            req.logout();
-            res.redirect('/');
-        }
-    });
+    var sess = req.session; 
+    
+    console.log("Auth: "+req.session.username+" is trying to logout.");
+    req.session.destroy();
+    res.redirect('/');
+
 }
 exports.login = function(req, res){
     var message = '';
@@ -18,11 +15,11 @@ exports.login = function(req, res){
     
     if(req.method == "POST"){
     var post  = req.body;
-    var email= post.user_email;
+    var email_username= post.user_email;
     var pass= post.user_password;
-    console.log("Auth: Recieved "+email+" w/ Password: "+pass)
+    console.log("Auth: Recieved "+email_username+" w/ Password: "+pass)
     // var sql=" CALL loginCheck("+email+","+pass+",@id,@username,@role);select @id as `id`,@username as `username`,@role as `role`;";
-    var sql="select id,email,fullname,username,role from `Users` where `email`='"+email+"' AND password='"+pass+"'";
+    var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
     db.query(sql, function(err, results){      
         if(results.length){
             console.log("Result "+results[0]);
