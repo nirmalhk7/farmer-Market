@@ -25,7 +25,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard')
 var auth=require('./routes/auth');
-var searchRouter=require('./routes/search')
 
 
 

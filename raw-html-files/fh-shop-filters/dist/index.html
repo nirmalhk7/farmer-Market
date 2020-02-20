@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - FH Shop Filters</title>
+  <link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="topBar">
+  <input type="text" id="search" name="search" class="form-control player-search" placeholder="Search for an item..." autocomplete="off">
+  <div class="sortBy">
+    <h4>SORT BY:</h4>
+    <select class="form-control">
+      <option>Most Popular</option>
+      <option>Price [Lowest to Highest]</option>
+      <option>Price [Highest to Lowest]</option>
+      <option>Name [A to Z]</option>
+    </select>
+  </div>
+</div>
+
+
+
+<aside id="filters">
+  <h1 class="bigHead">FILTER SHOP ITEMS</h1>
+  <h2 class="bump"><span class="results">37</span> Results Found</h2>
+
+  <div id="type">
+    <h1>TYPE</h1>
+    <div class="bump">
+      <div class="box1">
+        <input type="checkbox" id="clothing">
+        <label for="clothing" class="check-box"></label>
+        <h4>Clothing</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="equipment">
+        <label for="equipment" class="check-box"></label>
+        <h4>Equipment</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="trips">
+        <label for="trips" class="check-box"></label>
+        <h4>Trips/Tickets</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="social">
+        <label for="social" class="check-box"></label>
+        <h4>Social Media</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="profile">
+        <label for="profile" class="check-box"></label>
+        <h4>Profile Perks</h4>
+      </div>
+    </div>
+  </div>
+
+  <div id="sports" class="clearfix">
+    <h1>SPORT</h1>
+    <div class="bump">
+      <div class="box1">
+        <input type="checkbox" id="nfl">
+        <label for="nfl" class="check-box"></label>
+        <h4>NFL</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="mlb">
+        <label for="mlb" class="check-box"></label>
+        <h4>PGA</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="pga">
+        <label for="pga" class="check-box"></label>
+        <h4>MLB</h4>
+      </div>
+      <div class="box1">
+        <input type="checkbox" id="esports">
+        <label for="esports" class="check-box"></label>
+        <h4 class="clearMarg">E-SPORTS</h4>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="specials" class="clearfix">
+    <h1>SPECIALS</h1>
+    <div class="specBump">
+      <div class="box2">
+        <input type="checkbox" id="onSale">
+        <label for="onSale" class="check-box"></label>
+        <h4>ON SALE</h4>
+      </div>
+      <div class="box2">
+        <input type="checkbox" id="newest">
+        <label for="newest" class="check-box"></label>
+        <h4>NEWEST</h4>
+      </div>
+      <div class="box2">
+        <input type="checkbox" id="featured">
+        <label for="featured" class="check-box"></label>
+        <h4>FEATURED</h4>
+      </div>
+    </div>
+  </div>
+  <!--END SPECIALS RANGE -->
+
+
+  <div id="priceRange" class="clearfix">
+    <h1>PRICE RANGE</h1>
+    <div class="bump">
+      <div id="slider"></div>
+
+      <div class="minVal">
+        <h3 class="minPrice">1,300</h3>
+      </div>
+
+      <div class="maxVal">
+        <h3 class="maxPrice">14,000</h3>
+      </div>
+    </div>
+  </div>
+  <!--END PRICE RANGE-->
+</aside>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://code.jquery.com/ui/1.10.4/jquery-ui.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

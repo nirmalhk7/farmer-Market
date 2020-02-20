@@ -1,0 +1,35 @@
+nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='/' style="font-family: 'Rokkitt', serif;") 
+    b Agri
+    | Bazaar
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    if role!="farmer"
+      form(role="form" method="post" action="/search",style="width:100%")
+        .input-group
+          input.form-control(type="text",name="search",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
+          .input-group-append
+            button.btn.btn-warning(type="button",id="button-addon2")
+              i.fa.fa-search
+    ul.navbar-nav.ml-auto
+      //- li.nav-item.active
+      //-   a.nav-link(href='#')
+      //-     | Home 
+      //-     span.sr-only (current)
+      li.nav-item
+        a.nav-link(href='/cart') Cart
+      li.nav-item.dropdown
+        if accname
+          a#navbarDropdown.nav-link.dropdown-toggle(href='users', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')= accname
+          .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='/users') Cart
+            a.dropdown-item(href='#') Previous Orders
+            a.dropdown-item(href='#') Return/Exchange
+            .dropdown-divider
+            a.dropdown-item(href='/logout') Log Out
+        else
+          a#navbarDropdown.nav-link.dropdown-toggle(href='users', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Login/Signup
+          .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdown')
+            a.dropdown-item(href='/users') Login
+            a.dropdown-item(href='#') Sign Up

@@ -13,20 +13,23 @@
     // });	 
 };
 exports.sellerProfile= function(req,res,next){
-    res.render('seller');
+    var sess = req.session; 
+    var userId=req.session.userId;
+    if(userId==null)
+    {
+        req.session.message="Please login to view your Seller Dashboard";
+        req,session.level="warning";
+        res.redirect('/users');
+    }
+    res.render('seller_dashboard',{accname:req.session.username,role:req.session.role});
 }
 exports.search = function(req,res,next){
-    if(req.method == "POST"){
-        var post  = req.body;
-        var username=req.session.username;
-        var userId=req.session.userId;
-        var role=req.session.role;
-        var searchquery=post.search;
-        console.log("attempt to search "+searchquery);
-        res.render('search',{accname: username,searchitem:searchquery});
-    }
-    else{
-        res.redirect('/');
+    var username=req.session.username;
+    var userId=req.session.userId;
+    var role=req.session.role;
+    if (role=="shopper"){
+        console.log("express-session: "+username+" is found from the Cache")
+        res.render('search',{accname: username});
     }
     
 }
