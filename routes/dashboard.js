@@ -16,12 +16,17 @@ exports.sellerProfile= function(req,res,next){
     res.render('seller');
 }
 exports.search = function(req,res,next){
-    var username=req.session.username;
-    var userId=req.session.userId;
-    var role=req.session.role;
-    if (role=="shopper"){
-        console.log("express-session: "+username+" is found from the Cache")
-        res.render('search',{accname: username});
+    if(req.method == "POST"){
+        var post  = req.body;
+        var username=req.session.username;
+        var userId=req.session.userId;
+        var role=req.session.role;
+        var searchquery=post.search;
+        console.log("attempt to search "+searchquery);
+        res.render('search',{accname: username,searchitem:searchquery});
+    }
+    else{
+        res.redirect('/');
     }
     
 }
