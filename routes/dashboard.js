@@ -1,7 +1,10 @@
  exports.mycart = function(req, res, next){
-	var userId =  req.session.userId;
-	if(userId == null){
-		res.render('users',{message:"Please login to view your cart.",level:"warning"})
+    var userId =  req.session.userId;
+    if(userId == null){
+        var sess = req.session; 
+        req.session.message="Please login to view your cart";
+        req.session.level="warning";
+        res.redirect('/users');
 		return;
     }
     // res.send(req.session.username+", you can now see CART!");

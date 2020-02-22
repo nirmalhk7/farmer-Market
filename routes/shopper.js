@@ -18,7 +18,7 @@ exports.sellerProfile= function(req,res,next){
     if(userId==null)
     {
         req.session.message="Please login to view your Seller Dashboard";
-        req,session.level="warning";
+        req.session.level="warning";
         res.redirect('/users');
     }
     res.render('seller_dashboard',{accname:req.session.username,role:req.session.role});

@@ -1,5 +1,18 @@
 exports.users = function(req,res,next){
-    res.render('users', { title: 'AgriBazaar' });
+    var sess = req.session; 
+    var message=req.session.message;
+    if(req.session.message!=null)
+    {
+        var level=req.session.level;
+        console.log("session.message",level+": "+message);
+        res.render('users', { title: 'AgriBazaar',message:message,level:level });
+        delete res.session.message;
+        delete res.session.level;
+    }
+    else
+    {
+        res.render('users', { title: 'AgriBazaar' });
+    }
 }
 exports.logout = function(req,res,next){
     console.log("Auth: Trying to logout.");
@@ -23,17 +36,20 @@ exports.login = function(req, res){
     var post  = req.body;
     var email_username= post.user_email;
     var pass= post.user_password;
-    console.log("Auth: Recieved "+email_username+" w/ Password: "+pass)
-    // var sql=" CALL loginCheck("+email+","+pass+",@id,@username,@role);select @id as `id`,@username as `username`,@role as `role`;";
-    var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
-    db.query(sql, function(err, results){      
-        if(results.length){
-            console.log("Result "+results[0]);
-            req.session.userId=results[0].id;
-            req.session.role=results[0].role;
-            req.session.username=results[0].username;
-            // res.render('index',{accname: results[0].username});
-            if(results[0].role=="shopper")
+    console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
+    var sql="CALL Users_verify('"+email_username+"','"+pass+"');";
+    //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
+    db.query(sql, function(err, results){ 
+        if (err) {
+            return console.error(err);
+        }
+        var json=JSON.parse(JSON.stringify(results[0]));
+        if(json[0]!=null){
+            req.session.userId=json[0].id;
+            req.session.role=json[0].role;
+            req.session.username=json[0].username;
+            console.info("auth",json[0].fullname+" just logged in!");
+            if(json[0].role=="shopper")
             {
                 res.redirect('/');
             }
@@ -42,19 +58,15 @@ exports.login = function(req, res){
                 res.redirect('/dashboard');
             }
         }
-        else{
-            console.log("Auth: Incorrect Credentials "+email+"- "+pass)
-            message = 'Sorry, but your email or password is incorrect.';
-            req.session.message=message;
+        else
+        {
+            var sess = req.session; 
+            console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
+            req.session.message="Incorrect credentials. Please try again.";
             req.session.level="danger";
-            console.log("Sending "+req.session.message);
             res.redirect('/users');
-            // res.render('users',{message: message,level:"danger"});
         }
-    });
-    } else {
-    res.send("Auth: Incorrect database query!");
-    }         
+    })};
 };
 exports.signup = function(req, res){
     message = '';
