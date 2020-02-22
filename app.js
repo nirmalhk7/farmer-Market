@@ -45,7 +45,7 @@ app.use('/cart',dashboardRouter.mycart);
 app.post('/login', auth.login);
 app.post('/signup',auth.signup);
 app.use('/search',dashboardRouter.search);
-app.post('/logout',auth.logout);
+app.use('/logout',auth.logout);
 app.use('/dashboard',dashboardRouter.sellerProfile);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

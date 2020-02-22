@@ -2,11 +2,17 @@ exports.users = function(req,res,next){
     res.render('users', { title: 'AgriBazaar' });
 }
 exports.logout = function(req,res,next){
+    console.log("Auth: Trying to logout.");
     var sess = req.session; 
-    
     console.log("Auth: "+req.session.username+" is trying to logout.");
-    req.session.destroy();
-    res.redirect('/');
+    req.session.destroy(function(err){
+        if(err){
+            console.log("Auth:"+err);
+        }else{
+            console.log("Auth: Logged Out!");
+            res.redirect('/');
+        }
+    });
 
 }
 exports.login = function(req, res){

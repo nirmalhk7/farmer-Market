@@ -14,5 +14,4 @@ connection.connect(function (err){
 		throw new Error("MySQL: Database is DISCONNECTED :( ");
 	}
 });
-
 module.exports=connection;
