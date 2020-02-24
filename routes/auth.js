@@ -79,13 +79,16 @@ exports.signup = function(req, res){
         var email=post.Remail;
         var role=post.Rrole;
         console.log("Role "+role);
-        var sql = "INSERT INTO `Users`(`username`,`password`,`fullname`, `email`,`role`,`address`) VALUES ('" + name + "','" + pass + "','" + fname + "','" + email + "','" + role + "','" + address + "')";
-
+        var sql = "call Users_register('"+name+"','"+pass+"','"+fname+"','"+email+"','"+role+"','"+address+"');";
         var query = db.query(sql, function(err, result) {
-
+            if (err) {
+                return console.error(err);
+            }
             message = "Succesfull! Your account has been created.";
+
             res.render('index',{title:"India's Biggest Farmer-to-Consumer Marketplace",accname: name,message: message,level: "info"});
         });
+        
 
     } else {
         res.render('signup');
