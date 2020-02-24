@@ -1,5 +1,19 @@
 extends layout
 block content
+  table
+    tr
+      th Item Name
+      th Quantity
+      th Item Status
+      th Item Price
+    if cartItems
+      for cartItem in cartItems
+        tr
+          td #{cartItem.ItemName}
+          td #{cartItem.SellerName}
+          td #{cartItem.Quantity}
+          td #{cartItem.ItemStatus}
+          td #{cartItem.ItemPrice}
   .shopping-cart
   .column-labels
     label.product-image Image

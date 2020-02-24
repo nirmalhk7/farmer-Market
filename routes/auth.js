@@ -41,7 +41,7 @@ exports.login = function(req, res){
     //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
     db.query(sql, function(err, results){ 
         if (err) {
-            return console.error(err);
+            return console.error("SQL Error",err);
         }
         var json=JSON.parse(JSON.stringify(results[0]));
         if(json[0]!=null){

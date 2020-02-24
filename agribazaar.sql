@@ -16,6 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Temporary view structure for view `AdminLedger`
+--
+
+DROP TABLE IF EXISTS `AdminLedger`;
+/*!50001 DROP VIEW IF EXISTS `AdminLedger`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `AdminLedger` AS SELECT 
+ 1 AS `CartId`,
+ 1 AS `BuyerId`,
+ 1 AS `BuyerName`,
+ 1 AS `ItemName`,
+ 1 AS `ItemQuantity`,
+ 1 AS `FinalItemPrice`,
+ 1 AS `SellerName`,
+ 1 AS `SellerId`,
+ 1 AS `ItemStatus`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `Cart`
 --
 
@@ -31,7 +51,7 @@ CREATE TABLE `Cart` (
   `price` varchar(10) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +60,7 @@ CREATE TABLE `Cart` (
 
 LOCK TABLES `Cart` WRITE;
 /*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
-INSERT INTO `Cart` VALUES (2,1,1,10,'buying','40',1);
+INSERT INTO `Cart` VALUES (2,1,1,10,'buying','40',1),(2,2,1,5,'buying','40',2),(3,1,1,5,'buying','90',3),(3,1,1,20,'bought','40',4);
 /*!40000 ALTER TABLE `Cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +102,7 @@ CREATE TABLE `Items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +111,7 @@ CREATE TABLE `Items` (
 
 LOCK TABLES `Items` WRITE;
 /*!40000 ALTER TABLE `Items` DISABLE KEYS */;
-INSERT INTO `Items` VALUES ('Rice','Basmati Indian Rice',1,'Cereals');
+INSERT INTO `Items` VALUES ('Rice','Basmati Indian Rice',1,'Cereals'),('Urad Dal','Skinned Urad Dal',2,'Lentils');
 /*!40000 ALTER TABLE `Items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +132,7 @@ CREATE TABLE `Users` (
   `address` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UniqueConstraint` (`username`,`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,9 +141,27 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'nirmal','nirmal','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','mukesh','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','yash','Yash Parakh','yash@agribazaar.com','shopper','B5RX');
+INSERT INTO `Users` VALUES (1,'nirmal','nirmal','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','mukesh','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','yash','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','john','John Doe','john@doe.com','farmer','john street'),(5,'jane','jane','Jane Doe','jane@doe.com','shopper','Jane Street'),(6,'nirmalhk7','nirmal','NK','nirmal@nirmal.com','shopper','Hello Street');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `AdminLedger`
+--
+
+/*!50001 DROP VIEW IF EXISTS `AdminLedger`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `AdminLedger` AS select `Cart`.`id` AS `CartId`,`Users`.`id` AS `BuyerId`,`Users`.`fullname` AS `BuyerName`,`Items`.`name` AS `ItemName`,`Cart`.`quantity` AS `ItemQuantity`,`Cart`.`price` AS `FinalItemPrice`,(select `Users`.`fullname` from `Users` where (`Users`.`id` = `Cart`.`sellerid`)) AS `SellerName`,(select `Users`.`id` from `Users` where (`Users`.`id` = `Cart`.`sellerid`)) AS `SellerId`,upper(`Cart`.`itemStatus`) AS `ItemStatus` from ((`Cart` join `Users` on((`Cart`.`userid` = `Users`.`id`))) join `Items` on((`Cart`.`itemno` = `Items`.`id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -134,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-22 22:11:25
+-- Dump completed on 2020-02-24 18:56:21

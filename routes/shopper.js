@@ -6,6 +6,7 @@
     }
     // res.send(req.session.username+", you can now see CART!");
     var username=req.session.username;
+    
     res.render('buyer/cart',{title:"Your Cart",accname:username,role:req.session.role});
 	// var sql="SELECT * FROM `login_details` WHERE `id`='"+userId+"'";
     // db.query(sql, function(err, results){
