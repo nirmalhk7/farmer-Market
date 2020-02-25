@@ -1,19 +1,29 @@
-exports.users = function(req,res,next){
-    var sess = req.session; 
-    var message=req.session.message;
-    if(req.session.message!=null)
+exports.login_signup_render= function(req,res,next){
+    console.log("Login ",req.session.username);
+    if(req.session.username==null)
     {
-        var level=req.session.level;
-        console.log("session.message",level+": "+message);
-        res.render('users', { title: 'AgriBazaar',message:message,level:level });
-        delete res.session.message;
-        delete res.session.level;
+        var sess = req.session; 
+        var message=req.session.message;
+        console.log("Message "+req.session.message);
+        if(req.session.message!=null)
+        {
+            var level=req.session.level;
+            console.log("Recieving "+message);
+            res.render('main/auth', { title: 'AgriBazaar',message:message,level:level });
+            delete res.session.message;
+            delete res.session.level;
+        }
+        else
+        {
+            res.render('main/auth', { title: 'AgriBazaar' });
+        }
     }
     else
     {
-        res.render('users', { title: 'AgriBazaar' });
+        res.redirect('/');
     }
 }
+
 exports.logout = function(req,res,next){
     console.log("Auth: Trying to logout.");
     var sess = req.session; 
@@ -97,3 +107,18 @@ exports.signup = function(req, res){
         res.render('signup');
     }
 };
+
+exports.search = function(req,res,next){
+    if(req.method == "POST"){
+        var post  = req.body;
+        var username=req.session.username;
+        var userId=req.session.userId;
+        var role=req.session.role;
+        var searchquery=post.search;
+        console.log("attempt to search "+searchquery);
+        res.render('main/search',{title:"Search",accname: username,searchitem:searchquery});
+    }
+    else{
+        res.redirect('/');
+    }   
+}

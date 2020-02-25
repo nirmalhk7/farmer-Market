@@ -21,10 +21,10 @@ app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }))
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var dashboardRouter = require('./routes/dashboard')
-var auth=require('./routes/auth');
+var index = require('./routes/index');
+var main = require('./routes/main');
+var shopper = require('./routes/shoppers')
+var farmers=require('./routes/farmers');
 
 
 
@@ -39,14 +39,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', auth.users);
-app.use('/cart',dashboardRouter.mycart);
-app.post('/login', auth.login);
-app.post('/signup',auth.signup);
-app.use('/search',dashboardRouter.search);
-app.use('/logout',auth.logout);
-app.use('/dashboard',dashboardRouter.sellerProfile);
+app.use('/', index);
+app.use('/auth', main.login_signup_render);
+app.use('/cart',shopper.mycart);
+
+app.post('/login', main.login);
+app.post('/signup',main.signup);
+app.use('/logout',main.logout);
+
+app.post('/search',main.search);
+app.use('/dashboard',farmers.lastSales);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
