@@ -66,7 +66,10 @@ exports.login = function(req, res){
             req.session.level="danger";
             res.redirect('/users');
         }
-    })};
+    })}
+    else{
+        res.redirect('/')
+    }
 };
 exports.signup = function(req, res){
     message = '';
