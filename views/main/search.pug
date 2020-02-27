@@ -1,3 +1,14 @@
 extends ../layout
 block content
-  | Things to search- #{searchitem} 
+  if searchitems
+    table
+      tr
+        th Name
+        th Description
+        th SellerCount
+      for searchitem in searchitems
+        tr
+          td #{searchitem.name}
+          td #{searchitem.description}
+          td #{searchitem.category}
+          td #{searchitem.SellerCount} seller selling this!

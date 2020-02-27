@@ -9,9 +9,9 @@ var connection = mysql.createConnection({
 });
 connection.connect(function (err){
 	if(!err){
-		console.log("MySQL: Database is CONNECTED :) ")
+		console.log("MySQL","Database is CONNECTED :) ")
 	}else {
-		throw new Error("MySQL: Database is DISCONNECTED :( ");
+		throw console.error("MySQL","Database is DISCONNECTED :( ");
 	}
 });
 module.exports=connection;

@@ -107,7 +107,15 @@ exports.signup = function(req, res){
         res.render('signup');
     }
 };
-
+function search_callback(searchquery,callback)
+{
+    db.query("call search_All('"+searchquery+"')", function(err, rows) {
+    if (err) {
+        callback(err, null);
+    } else 
+        callback(null, rows[0]);
+    });
+}
 exports.search = function(req,res,next){
     if(req.method == "POST"){
         var post  = req.body;
@@ -115,8 +123,19 @@ exports.search = function(req,res,next){
         var userId=req.session.userId;
         var role=req.session.role;
         var searchquery=post.search;
-        console.log("attempt to search "+searchquery);
-        res.render('main/search',{title:"Search",accname: username,searchitem:searchquery});
+        console.log(username+" searching:",searchquery)
+        var res;
+        search_callback(searchquery, function(err, content) {
+            if (err) {
+                throw console.error(err);
+            } else {
+                res = content;
+                console.log(res);
+            }
+        });
+        var ans=JSON.parse(JSON.stringify(res))
+        console.log("attempt to search ",q);
+        return res.render('main/search',{title:"Search",accname: username,searchItems:ans});
     }
     else{
         res.redirect('/');
