@@ -51,3 +51,23 @@ Tables
 | price      | varchar(10) | YES  |     | NULL    |                |
 | id         | int         | NO   | PRI | NULL    | auto_increment |
 +------------+-------------+------+-----+---------+----------------+
+
+### SellerItemList (View)
++-------------+------+------+-----+---------+-------+
+| Field       | Type | Null | Key | Default | Extra |
++-------------+------+------+-----+---------+-------+
+| itemId      | int  | YES  |     | NULL    |       |
+| SellerNames | text | YES  |     | NULL    |       |
++-------------+------+------+-----+---------+-------+
+
+### SearchView (View)
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | int          | YES  |     | 0       |       |
+| name        | varchar(20)  | YES  |     | NULL    |       |
+| description | varchar(100) | YES  |     | NULL    |       |
+| category    | varchar(20)  | YES  |     | NULL    |       |
+| SellerCount | bigint       | YES  |     | NULL    |       |
+| SellerNames | text         | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+

@@ -5,10 +5,14 @@ block content
       tr
         th Name
         th Description
+        th Category
+        th Link
         th SellerCount
       for searchitem in searchitems
         tr
           td #{searchitem.name}
           td #{searchitem.description}
           td #{searchitem.category}
+          td
+            a(href="/item/"+searchitem.id) Link
           td #{searchitem.SellerCount} seller selling this!

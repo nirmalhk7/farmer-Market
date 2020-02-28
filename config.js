@@ -5,7 +5,8 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
 	password : 'nirmalkhedkar',
-	database : 'agribazaar'
+	database : 'agribazaar',
+	multipleStatements : true
 });
 connection.connect(function (err){
 	if(!err){

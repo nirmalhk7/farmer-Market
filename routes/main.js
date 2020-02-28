@@ -116,28 +116,35 @@ function search_callback(searchquery,callback)
         callback(null, rows[0]);
     });
 }
-exports.search = function(req,res,next){
-    if(req.method == "POST"){
-        // var post  = req.body;
-        // var username=req.session.username;
-        // var userId=req.session.userId;
-        // var role=req.session.role;
-        // var searchquery=post.search;
-        // console.log(username+" searching:",searchquery)
-        // var res;
-        // search_callback(searchquery, function(err, content) {
-        //     if (err) {
-        //         throw console.error(err);
-        //     } else {
-        //         res = content;
-        //         console.log(res);
-        //     }
-        // });
-        // var ans=JSON.parse(JSON.stringify(res))
-        // console.log("attempt to search ",q);
-        // return res.render('main/search',{title:"Search",accname: username,searchItems:ans});
+exports.getItemSeller = function(req,res,next){
+    var username=req.session.username;
+    var userId=req.session.userId;
+    var role=req.session.role;
+    if(role!="farmer")
+    {
+        var sql="call search_getSellers("+req.params.itemid+");select name,category,description from Items where id=1;";
+        db.query(sql,function(err,op){
+            if(err)
+            {
+                throw console.error("SQL Error",err)
+            }
+            
+            var ans=JSON.parse(JSON.stringify(op[0]))
+            console.log("TESTING",op[2])
+            var itemdetails=JSON.parse(JSON.stringify(op[2]))
+            console.log("TESTING",itemdetails[0])
+            console.log(username+" getting sellers ",ans);
+            res.render('main/itemSeller',{title:itemdetails[0].name+" at cheapest rates!",accname:username,itemSellers:ans})
+
+        })
     }
-    else if(req.method=="GET")
+    else
+    {
+        res.redirect('/');
+    }
+}
+exports.search = function(req,res,next){
+    if(req.method=="GET")
     {
         var username=req.session.username;
         var userId=req.session.userId;
