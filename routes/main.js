@@ -1,3 +1,4 @@
+
 exports.login_signup_render= function(req,res,next){
     console.log("Login ",req.session.username);
     if(req.session.username==null)
@@ -44,6 +45,7 @@ exports.login = function(req, res){
     
     if(req.method == "POST"){
     var post  = req.body;
+    console.log("Remember",post.remember)
     var email_username= post.user_email;
     var pass= post.user_password;
     console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
@@ -59,6 +61,10 @@ exports.login = function(req, res){
             req.session.role=json[0].role;
             req.session.username=json[0].username;
             console.info("auth",json[0].fullname+" just logged in!");
+            if(post.remember=="on")
+                res.cookie('username',json[0].username,{maxAge: 2630000})
+                res.cookie('role',json[0].role,{maxAge: 2630000});
+                res.cookie('userId',json[0].id,{maxAge: 2630000})
             if(json[0].role=="shopper")
             {
                 res.redirect('/');

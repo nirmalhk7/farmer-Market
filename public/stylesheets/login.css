@@ -360,3 +360,7 @@ border-color:#faebcc;
 button, button:active, button:focus{
   outline: none; /* Works in Firefox, Chrome, IE8 and above */ 
 }
+
+input:checked ~ .checkmark {
+  background-color: #2196F3;
+}

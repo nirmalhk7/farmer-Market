@@ -33,6 +33,10 @@ section.user
             .alert.alert-danger(role="alert") #{message}
           else if level=="warning"
             .alert.alert-warning(role="alert") #{message}
+          label Remember me for 30 days
+            input(type="checkbox" name="remember")
+            span.checkmark
+
           .forms_buttons
             button.forms_buttons-forgot(type='button') Forgot password?
             input.forms_buttons-action(type='submit' value='Log In')
