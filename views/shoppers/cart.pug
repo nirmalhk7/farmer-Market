@@ -1,19 +1,20 @@
 extends ../layout
 block content
-   if cartItems
-  table
-    tr
-      th Item Name
-      th Quantity
-      th Item Status
-      th Item Price
-    for cartItem in cartItems
+  if cartItems
+    table
       tr
-        td #{cartItem.ItemName}
-        td #{cartItem.SellerName}
-        td #{cartItem.Quantity}
-        td #{cartItem.ItemStatus}
-        td #{cartItem.ItemPrice}
+        th Item Name
+        th Seller Name
+        th Quantity
+        th Item Status
+        th Item Price
+      for cartItem in cartItems
+        tr
+          td #{cartItem.ItemName}
+          td #{cartItem.SellerName}
+          td #{cartItem.Quantity}
+          td #{cartItem.ItemStatus}
+          td #{cartItem.ItemPrice}
   .shopping-cart
   .column-labels
     label.product-image Image

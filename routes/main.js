@@ -34,6 +34,9 @@ exports.logout = function(req,res,next){
             console.log("Auth:"+err);
         }else{
             console.log("Auth: Logged Out!");
+            res.clearCookie('userId');
+            res.clearCookie('username');
+            res.clearCookie('role');
             res.redirect('/');
         }
     });
