@@ -8,14 +8,15 @@
     }
     // res.send(req.session.username+", you can now see CART!");
     var username=req.session.username;
-    let sql="call Cart_getItems("+userId+"+);";
-    db.query(sql,function(results,error){
+    let sql="call Cart_getItems("+userId+");";
+    db.query(sql,function(error,results){
         if(error)
         {
             throw console.error("MySQL Error",error);
         }
-        var res=JSON.parse(JSON.stringify(results[0]));
-        res.render('shoppers/cart',{title:"Your Cart",accname:username,role:req.session.role,cartItems:res});
+        var rp=JSON.parse(JSON.stringify(results[0]));
+        console.log("RES",results)
+        res.render('shoppers/cart',{title:"Your Cart",accname:username,role:req.session.role,cartItems:rp});
     })
     
 	// var sql="SELECT * FROM `login_details` WHERE `id`='"+userId+"'";
