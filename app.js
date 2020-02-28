@@ -25,7 +25,7 @@ var index = require('./routes/index');
 var main = require('./routes/main');
 var shopper = require('./routes/shoppers')
 var farmers=require('./routes/farmers');
-
+var search=require('./routes/search');
 
 
 
@@ -47,7 +47,7 @@ app.post('/login', main.login);
 app.post('/signup',main.signup);
 app.use('/logout',main.logout);
 
-app.post('/search',main.search);
+app.use('/search',main.search);
 app.use('/dashboard',farmers.lastSales);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

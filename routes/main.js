@@ -118,24 +118,51 @@ function search_callback(searchquery,callback)
 }
 exports.search = function(req,res,next){
     if(req.method == "POST"){
-        var post  = req.body;
+        // var post  = req.body;
+        // var username=req.session.username;
+        // var userId=req.session.userId;
+        // var role=req.session.role;
+        // var searchquery=post.search;
+        // console.log(username+" searching:",searchquery)
+        // var res;
+        // search_callback(searchquery, function(err, content) {
+        //     if (err) {
+        //         throw console.error(err);
+        //     } else {
+        //         res = content;
+        //         console.log(res);
+        //     }
+        // });
+        // var ans=JSON.parse(JSON.stringify(res))
+        // console.log("attempt to search ",q);
+        // return res.render('main/search',{title:"Search",accname: username,searchItems:ans});
+    }
+    else if(req.method=="GET")
+    {
         var username=req.session.username;
         var userId=req.session.userId;
         var role=req.session.role;
-        var searchquery=post.search;
+        var searchquery=req.query.search;
         console.log(username+" searching:",searchquery)
-        var res;
-        search_callback(searchquery, function(err, content) {
-            if (err) {
-                throw console.error(err);
-            } else {
-                res = content;
-                console.log(res);
+        // search_callback(searchquery, function(err, content) {
+        //     if (err) {
+        //         throw console.error(err);
+        //     } else {
+        //         res = content;
+        //         console.log(res);
+        //     }
+        // });
+        //var ans=JSON.parse(JSON.stringify(res))
+        let sql="call search_All('"+searchquery+"');"
+        db.query(sql,function(err,answ){
+            if(err)
+            {
+                throw console.error("SQL Error",err);
             }
-        });
-        var ans=JSON.parse(JSON.stringify(res))
-        console.log("attempt to search ",q);
-        return res.render('main/search',{title:"Search",accname: username,searchItems:ans});
+            let ans=JSON.parse(JSON.stringify(answ[0]));
+            console.log(username,"Queried "+ans)
+            res.render('main/search',{title:"Search",accname: username,searchitems:ans});
+        })
     }
     else{
         res.redirect('/');

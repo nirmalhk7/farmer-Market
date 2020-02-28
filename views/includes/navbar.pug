@@ -6,7 +6,7 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
     span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     if role!="farmer"
-      form(role="form" method="post" action="/search",style="width:100%")
+      form(role="form" method="GET" action="/search",style="width:100%")
         .input-group
           input.form-control(type="text",name="search",placeholder="Search Here",aria-label="Recipient's username",aria-describedby="button-addon2")
           .input-group-append
