@@ -51,7 +51,7 @@ CREATE TABLE `Cart` (
   `price` varchar(10) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `Cart` (
 
 LOCK TABLES `Cart` WRITE;
 /*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
-INSERT INTO `Cart` VALUES (2,1,1,10,'buying','40',1),(2,2,1,5,'buying','40',2),(3,1,1,5,'buying','90',3),(3,1,1,20,'bought','40',4);
+INSERT INTO `Cart` VALUES (2,1,1,10,'buying','40',1),(2,2,1,5,'buying','40',2),(3,1,1,5,'buying','90',3),(3,1,1,20,'bought','40',4),(2,1,1,1,'buying','10',5);
 /*!40000 ALTER TABLE `Cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,4 +380,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-28 23:15:46
+-- Dump completed on 2020-02-29  1:00:57
