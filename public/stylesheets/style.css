@@ -38,3 +38,24 @@ footer li:before {
 a, a:active, a:focus{
     outline: none; /* Works in Firefox, Chrome, IE8 and above */ 
 }
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    flex: 1 0 auto;
+    padding-top:56px;
+}
+
+footer {
+    flex-shrink: 0;
+}
+.container
+{
+    padding-top: 2em;
+}

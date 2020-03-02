@@ -73,7 +73,7 @@ exports.login = function(req, res){
             }
             else
             {
-                res.redirect('/dashboard');
+                res.redirect('/profile/'+req.session.username);
             }
         }
         else
@@ -82,7 +82,7 @@ exports.login = function(req, res){
             console.warn("auth","Incorrect Username "+email_username+" /Password "+pass);
             req.session.message="Incorrect credentials. Please try again.";
             req.session.level="danger";
-            res.redirect('/users');
+            res.redirect('/auth');
         }
     })}
     else{
@@ -115,15 +115,6 @@ exports.signup = function(req, res){
         res.render('signup');
     }
 };
-function search_callback(searchquery,callback)
-{
-    db.query("call search_All('"+searchquery+"')", function(err, rows) {
-    if (err) {
-        callback(err, null);
-    } else 
-        callback(null, rows[0]);
-    });
-}
 exports.getItemSeller = function(req,res,next){
     var username=req.session.username;
     var userId=req.session.userId;
@@ -176,7 +167,7 @@ exports.search = function(req,res,next){
             }
             let ans=JSON.parse(JSON.stringify(answ[0]));
             console.log(username,"Queried "+ans)
-            res.render('main/search',{title:"Search",accname: username,searchitems:ans});
+            res.render('main/search',{title:"Search",accname: username,searchitems:ans,query:searchquery});
         })
     }
     else{

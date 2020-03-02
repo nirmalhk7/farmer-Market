@@ -25,11 +25,10 @@ var index = require('./routes/index');
 var main = require('./routes/main');
 var shopper = require('./routes/shoppers')
 var farmers=require('./routes/farmers');
-
+var common=require('./routes/common');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,15 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/auth', main.login_signup_render);
 app.use('/cart',shopper.mycart);
-app.use('/profile/:username',shopper.mycart);
-
+app.use('/profile/:username',common.getprofile);
+//app.use('/addItems/:username',);
 app.post('/login', main.login);
 app.post('/signup',main.signup);
 app.use('/logout',main.logout);
 
 app.use('/search',main.search);
 app.use('/item/:itemid',main.getItemSeller);
-app.use('/dashboard',farmers.lastSales);
+app.use('/addItems/:username',farmers.addItems);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

@@ -1,0 +1,21 @@
+extends ../layout
+block content
+  h1 View Profile
+  table
+    for u in user
+      tr
+        td Username
+        td #{u.username}
+      tr
+        td Password
+        td #{u.password}
+      tr
+        td Full Name
+        td #{u.fullname}
+      tr
+        td Email
+        td #{u.email}
+      tr
+        td Address
+        td #{u.address}
+

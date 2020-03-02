@@ -1,0 +1,21 @@
+extends ../layout
+block content
+    h1 Last Sales
+    if lastsales
+      table
+        tr
+          th User ID
+          th User Address
+          th Item Name
+          th Category
+          th Quantity
+          th Price
+        for lastsale in lastsales
+          tr
+            td #{lastsale.userid}
+            td #{lastsale.useraddress}
+            td #{lastsale.itemname}
+            td #{lastsale.quantity}
+            td #{lastsale.category}
+    else
+      | No sales yet!

@@ -1,18 +1,21 @@
 extends ../layout
 block content
-  if searchitems
-    table
-      tr
-        th Name
-        th Description
-        th Category
-        th Link
-        th SellerCount
-      for searchitem in searchitems
+  .container
+    if searchitems!=""
+      table
         tr
-          td #{searchitem.name}
-          td #{searchitem.description}
-          td #{searchitem.category}
-          td
-            a(href="/item/"+searchitem.id) Link
-          td #{searchitem.SellerCount} seller selling this!
+          th Name
+          th Description
+          th Category
+          th Link
+          th SellerCount
+        for searchitem in searchitems
+          tr
+            td #{searchitem.name}
+            td #{searchitem.description}
+            td #{searchitem.category}
+            td
+              a(href="/item/"+searchitem.id) Link
+            td #{searchitem.SellerCount} seller selling this!
+    else
+      | Sorry, couldn't find "#{query}".
