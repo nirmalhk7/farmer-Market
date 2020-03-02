@@ -4,7 +4,7 @@
 	if(userId == null){
         req.session.message="Please login to view your cart."
         req.session.level="warning"
-		res.render('main/auth',{title:"Join Us!"})
+        res.redirect('/auth')
 		return;
     }
     // res.send(req.session.username+", you can now see CART!");

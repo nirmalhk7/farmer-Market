@@ -39,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/auth', main.login_signup_render);
 app.use('/cart',shopper.mycart);
+app.use('/profile/:username',shopper.mycart);
 
 app.post('/login', main.login);
 app.post('/signup',main.signup);

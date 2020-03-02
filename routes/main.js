@@ -40,7 +40,6 @@ exports.logout = function(req,res,next){
             res.redirect('/');
         }
     });
-
 }
 exports.login = function(req, res){
     var message = '';

@@ -2,3 +2,5 @@
 
 rm agribazaar.sql
 mysqldump -u root -p --routines agribazaar > agribazaar.sql
+git add agribazaar.sql
+git commit -m "Database dumped"

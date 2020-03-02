@@ -1,19 +1,24 @@
 extends ../layout
 block content
-    | Hello
-    if lastsales
-      table
-        tr
-          th User ID
-          th User Address
-          th Item Name
-          th Category
-          th Quantity
-          th Price
-        for lastsale in lastsales
+    .container(style="margin-top:5em;margin-bottom:3em;")
+      if message
+        .alert.alert-danger.alert-dismissible.fade.show(role='alert')
+          strong #{message}
+          button.close(type='button' data-dismiss='alert' aria-label='Close')
+            span(aria-hidden='true') &times;
+      if lastsales
+        table
           tr
-            td #{lastsale.userid}
-            td #{lastsale.useraddress}
-            td #{lastsale.itemname}
-            td #{lastsale.quantity}
-            td #{lastsale.category}
+            th User ID
+            th User Address
+            th Item Name
+            th Category
+            th Quantity
+            th Price
+          for lastsale in lastsales
+            tr
+              td #{lastsale.userid}
+              td #{lastsale.useraddress}
+              td #{lastsale.itemname}
+              td #{lastsale.quantity}
+              td #{lastsale.category}
