@@ -29,9 +29,12 @@ CREATE TABLE `Cart` (
   `itemStatus` varchar(20) DEFAULT NULL,
   `price` varchar(10) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `itemSellerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
-  CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `Users` (`id`)
+  KEY `itemSellerId` (`itemSellerId`),
+  CONSTRAINT `Cart_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `Users` (`id`),
+  CONSTRAINT `Cart_ibfk_2` FOREIGN KEY (`itemSellerId`) REFERENCES `ItemSeller` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +44,7 @@ CREATE TABLE `Cart` (
 
 LOCK TABLES `Cart` WRITE;
 /*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
-INSERT INTO `Cart` VALUES (2,1,10,'buying','40',1),(2,2,5,'buying','40',2),(3,1,5,'buying','90',3),(3,1,20,'bought','40',4),(2,1,1,'buying','10',5);
+INSERT INTO `Cart` VALUES (2,1,10,'buying','40',1,NULL),(2,2,5,'buying','40',2,NULL),(3,1,5,'buying','90',3,NULL),(3,1,20,'bought','40',4,NULL),(2,1,1,'buying','10',5,NULL);
 /*!40000 ALTER TABLE `Cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +91,7 @@ CREATE TABLE `Items` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(20) DEFAULT NULL,
+  `category` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,10 +149,12 @@ CREATE TABLE `Users` (
   `password` varchar(25) NOT NULL,
   `fullname` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `role` varchar(20) DEFAULT NULL,
+  `role` varchar(20) NOT NULL,
   `address` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UniqueConstraint` (`username`,`email`)
+  UNIQUE KEY `UniqueConstraint` (`username`,`email`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,28 +166,6 @@ LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
 INSERT INTO `Users` VALUES (1,'nirmal','nirmal','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','mukesh','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','yash','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','john','John Doe','john@doe.com','farmer','john street'),(5,'jane','jane','Jane Doe','jane@doe.com','shopper','Jane Street'),(6,'nirmalhk7','nirmal','NK','nirmal@nirmal.com','shopper','Hello Street');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pass`
---
-
-DROP TABLE IF EXISTS `pass`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pass` (
-  `pswd` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pass`
---
-
-LOCK TABLES `pass` WRITE;
-/*!40000 ALTER TABLE `pass` DISABLE KEYS */;
-INSERT INTO `pass` VALUES ('6e6ad3b042f1925c47911a899f7c9a782e5a992f'),('ba2ef21d26c198cbd6efc38ccc12f27bd2ac6ab1');
-/*!40000 ALTER TABLE `pass` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -412,4 +395,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-04 14:12:54
+-- Dump completed on 2020-03-04 14:48:55
