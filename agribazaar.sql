@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
 -- Host: localhost    Database: agribazaar
 -- ------------------------------------------------------
--- Server version	5.7.29-0ubuntu0.18.04.1
+-- Server version	8.0.19-0ubuntu0.19.10.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,15 +21,15 @@
 
 DROP TABLE IF EXISTS `Cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Cart` (
-  `userid` int(11) DEFAULT NULL,
-  `itemno` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `userid` int DEFAULT NULL,
+  `itemno` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
   `itemStatus` varchar(20) DEFAULT NULL,
   `price` varchar(10) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `itemSellerId` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `itemSellerId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `itemSellerId` (`itemSellerId`),
@@ -44,7 +44,7 @@ CREATE TABLE `Cart` (
 
 LOCK TABLES `Cart` WRITE;
 /*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
-INSERT INTO `Cart` VALUES (2,1,10,'buying','40',1,NULL),(2,2,5,'buying','40',2,NULL),(3,1,5,'buying','90',3,NULL),(3,1,20,'bought','40',4,NULL),(2,1,1,'buying','10',5,NULL);
+INSERT INTO `Cart` VALUES (2,1,10,'buying','40',1,1),(2,2,5,'buying','40',2,1),(3,1,5,'buying','90',3,1),(3,1,20,'bought','40',4,1),(2,1,1,'buying','10',5,1);
 /*!40000 ALTER TABLE `Cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,14 +54,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ItemSeller`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ItemSeller` (
-  `sellerId` int(11) DEFAULT NULL,
-  `itemId` int(11) DEFAULT NULL,
+  `sellerId` int DEFAULT NULL,
+  `itemId` int DEFAULT NULL,
   `pricePerItem` float(10,2) DEFAULT NULL,
   `unit` varchar(10) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantity` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `sellerId` (`sellerId`),
   KEY `itemId` (`itemId`),
@@ -86,11 +86,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Items` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `category` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -107,13 +107,13 @@ INSERT INTO `Items` VALUES ('Rice','Basmati Indian Rice',1,'Cereals'),('Urad Dal
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `SearchView`
+-- Temporary view structure for view `SearchView`
 --
 
 DROP TABLE IF EXISTS `SearchView`;
 /*!50001 DROP VIEW IF EXISTS `SearchView`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `SearchView` AS SELECT 
  1 AS `id`,
  1 AS `name`,
@@ -124,13 +124,13 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `SellerItemList`
+-- Temporary view structure for view `SellerItemList`
 --
 
 DROP TABLE IF EXISTS `SellerItemList`;
 /*!50001 DROP VIEW IF EXISTS `SellerItemList`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `SellerItemList` AS SELECT 
  1 AS `itemId`,
  1 AS `SellerNames`*/;
@@ -142,11 +142,11 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(10) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `fullname` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `role` varchar(20) NOT NULL,
@@ -164,7 +164,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'nirmal','nirmal','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','mukesh','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','yash','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','john','John Doe','john@doe.com','farmer','john street'),(5,'jane','jane','Jane Doe','jane@doe.com','shopper','Jane Street'),(6,'nirmalhk7','nirmal','NK','nirmal@nirmal.com','shopper','Hello Street');
+INSERT INTO `Users` VALUES (1,'nirmal','8017d27151912033277faad0effc8662e0686b3602989ca7c382e77d0f7a8095','Nirmal Khedkar','nirmal@agribazaar.com','farmer','address 1'),(2,'mukesh','648461bf64b0639d7944cd41b49df473405921f3d69f79ffcb4d5066794996e4','Mukesh Siyak','mukesh@agribazaar.com','shopper','address 2'),(3,'yash','262cc47030b1803064844b94c1cb0054a247d1e550e26bb33f215149d8b2c72e','Yash Parakh','yash@agribazaar.com','shopper','B5RX'),(4,'john','96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a','John Doe','john@doe.com','farmer','john street'),(5,'jane','81f8f6dde88365f3928796ec7aa53f72820b06db8664f5fe76a7eb13e24546a2','Jane Doe','jane@doe.com','shopper','Jane Street'),(6,'nirmalhk7','8017d27151912033277faad0effc8662e0686b3602989ca7c382e77d0f7a8095','NK','nirmal@nirmal.com','shopper','Hello Street');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,53 +177,12 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Cart_getItems`(in usrid integer)
-select Items.name as "ItemName", Users.fullname as "SellerName", Cart.quantity as "Quantity",Cart.itemstatus as "ItemStatus",Cart.price as "ItemPrice" from Cart JOIN Items ON Items.id=Cart.itemno JOIN Users ON Cart.sellerid=Users.id where userId=usrid AND ItemStatus="buying" ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `loginCheck` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `loginCheck`(
-in emailGiven varchar(50),
-in passwdGiven varchar(25),
-out id int,
-out username varchar(10),
-out role varchar(20))
-begin
-select Users.id,Users.username,Users.role into id,username,role from Users where Users.email=emailGiven and Users.password=passwdGiven; 
-end ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Cart_getItems` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Cart_getItems`(in usrid integer)
-select Items.name as "ItemName", Users.fullname as "SellerName", Cart.quantity as "Quantity",Cart.itemstatus as "ItemStatus",Cart.price as "ItemPrice" from Cart JOIN Items ON Items.id=Cart.itemno JOIN Users ON Cart.sellerid=Users.id where userId=usrid AND ItemStatus="buying" ;;
+begin select Items.name as "ItemName", Users.fullname as "SellerName", Cart.quantity as "Quantity",Cart.itemstatus as "ItemStatus",Cart.price as "ItemPrice" from Cart JOIN Items ON Items.id=Cart.itemno JOIN Users ON Cart.itemSellerId=Users.id where userId=usrid AND ItemStatus="buying" ; end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -335,15 +294,15 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Users_verify`(IN usrname VARCHAR(50),IN pswd VARCHAR(50))
-BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Users_verify`(in usrname varchar(50), in pswd varchar(200))
+begin
 select id,email,fullname,username,role FROM Users WHERE (email=usrname OR username=usrname) AND password=pswd
 ;
-END ;;
+end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -395,4 +354,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-04 14:48:55
+-- Dump completed on 2020-03-07 17:13:54
