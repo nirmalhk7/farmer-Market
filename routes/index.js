@@ -13,11 +13,11 @@ router.get('/', function(req, res, next) {
     var username=req.session.username;
     var userId=req.session.userId;
     console.log("express-session: "+username+" is found from the Cache")
-    if(req.session.role!="farmer")
+ //   if(req.session.role!="farmer")
         res.render('index',{title:"India's Biggest Farmer-to-Consumer Marketplace",accname: username,mainpage:"mainpage"});
-    else
-      req.session.message="Error: Unauthorized Access"
-      req.session.level="danger"
-      res.redirect('/profile/'+req.session.username)
+    // else
+    //   req.session.message="Error: Unauthorized Access"
+    //   req.session.level="danger"
+    //   res.redirect('/profile/'+req.session.username)
 });
 module.exports = router;
