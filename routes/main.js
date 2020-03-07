@@ -51,7 +51,7 @@ exports.login = function(req, res){
     var email_username= post.user_email;
     var pass= post.user_password;
     console.log("auth","Recieved "+email_username+" w/ Password: "+pass);
-    var sql="CALL Users_verify('"+email_username+"',SHA('"+pass+"'));";
+    var sql="CALL Users_verify('"+email_username+"',SHA2('"+pass+"',256));";
     //var sql="select id,email,fullname,username,role from `Users` where (`email`='"+email_username+"' OR `username`='"+email_username+"') AND password='"+pass+"'";
     db.query(sql, function(err, results){ 
         if (err) {

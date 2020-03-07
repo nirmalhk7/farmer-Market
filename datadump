@@ -1,6 +1,6 @@
 #!/bin/bash
 
 rm agribazaar.sql
-mysqldump -u root -p --routines agribazaar > agribazaar.sql
+mysqldump -u root -p --routines --events --triggers agribazaar > agribazaar.sql
 git add agribazaar.sql
 git commit -m "Database dumped"
