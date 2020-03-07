@@ -169,6 +169,10 @@ INSERT INTO `Users` VALUES (1,'nirmal','8017d27151912033277faad0effc8662e0686b36
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'agribazaar'
+--
+
+--
 -- Dumping routines for database 'agribazaar'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `Cart_getItems` */;
@@ -354,4 +358,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-07 17:13:54
+-- Dump completed on 2020-03-07 17:22:27
