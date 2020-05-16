@@ -1,20 +1,21 @@
 extends ../layout
 block content
-  if itemSellers
-    table
-      tr
-        th Farmer Name
-        th Price
-        th Maximum Available
-        th Buy!
-      for itemSeller in itemSellers
-        tr
-          td #{itemSeller.sellerName}
-          td #{itemSeller.pricePerItem} #{itemSeller.unit}
-          td #{itemSeller.quantity}
-          if accname
-            td
-              a(href="/cart") Add to Cart
-          else
-            td
-              a(href="/auth") Login to add to cart
+  .container-fluid(style="padding-top: 3em;")
+    if itemSellers
+      table.table.table-hover(style="width: 100%")
+        tr.thead-dark
+          th Farmer Name
+          th Price
+          th Maximum Available
+          th Buy!
+        for itemSeller in itemSellers
+          tr
+            td #{itemSeller.sellerName}
+            td #{itemSeller.pricePerItem} #{itemSeller.unit}
+            td #{itemSeller.quantity}
+            if accname
+              td
+                a(href="/cart") Add to Cart
+            else
+              td
+                a(href="/auth") Login to add to cart

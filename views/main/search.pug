@@ -1,9 +1,9 @@
 extends ../layout
 block content
-  .container
+  .container-fluid(style="padding-top: 3em;")
     if searchitems!=""
-      table
-        tr
+      table.table.table-hover(style="width: 100%")
+        tr.thead-dark
           th Name
           th Description
           th Category
